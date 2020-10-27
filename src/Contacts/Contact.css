@@ -28,7 +28,8 @@
     color: #0C1B36;
     padding: 1.3rem;
     background-color: #fff;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid #ffffff !important;
+    background: linear-gradient(to right, #ffffff 0%, #003366 100%);
 }
 
 .loader {
@@ -48,6 +49,41 @@ img {
 
 .valid-email-input {
     border-color: red !important;
+}
+
+.add-contact-btn {
+    background-color: #0C1B36 !important;
+    width: 120px;
+    height: 32px;
+    border-radius: 125px !important;
+    text-align: center;
+    line-height: 16px !important;
+    border: none !important;
+    font-size: 14px;
+    box-shadow: none !important;
+    margin: 1rem;
+    float: right;
+}
+
+.modal-footer {
+    justify-content: center !important;
+}
+
+.cancel-btn {
+    width: 20% !important;
+    background-color: #ffff !important;
+    border-radius: 50px !important;
+    color: #0C1B36 !important;
+    border-color: #0C1B36 !important;
+}
+
+.save-btn {
+    width: 20% !important;
+    background-color: #0C1B36 !important;
+    border-radius: 50px !important;
+    color: #ffff !important;
+    border: none !important;
+
 }
 
 
