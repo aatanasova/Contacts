@@ -4,13 +4,15 @@ import Spinner from 'react-bootstrap/Spinner'
 import phoneIcon from '@fortawesome/fontawesome-free/svgs/solid/phone.svg';
 import userIcon from '@fortawesome/fontawesome-free/svgs/solid/user.svg';
 import emailIcon from '@fortawesome/fontawesome-free/svgs/solid/envelope.svg';
+import trashIcon from '@fortawesome/fontawesome-free/svgs/solid/times.svg';
 import './Contact.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddContactModal from './AddContactModal';
+import DeleteContactModal from './DeleteContactModal';
 
 
 
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmdlbGFAZXhhbXBsZS5jb20iLCJyb2xlcyI6W10sImlhdCI6MTYwMzgwNjM5NCwiZXhwIjoxNjAzODA5OTk0fQ.ziszL8wEQCYkvX2G5WQlrLTY8tvX-9hpQLZLRDq6_Pc';
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmdlbGFAZXhhbXBsZS5jb20iLCJyb2xlcyI6W10sImlhdCI6MTYwMzg5MTgzOCwiZXhwIjoxNjAzODk1NDM4fQ.pFwQJAY9q29gDVzO564H23rSKQsF5HpGSuzhxgqjVbw';
 
 const CLASS_NAMES = {
      CONTACT_CONTAINER: 'contact-container',
@@ -19,6 +21,7 @@ const CLASS_NAMES = {
      CONTACT_INFO: 'contact-info',
      LOADER: 'loader',
      ADD_CONTACT_BTN: 'add-contact-btn',
+     DELETE_ICON: 'delete-icon'
 
 }
 
@@ -30,7 +33,9 @@ const CLASS_NAMES = {
             isLoaded: false,
             error: null,
             showAddContactModal: false,
-            data: null
+            showDeleteContactModal: false,
+            data: null,
+            clickedId: null
         }
      }
 
@@ -76,7 +81,7 @@ const CLASS_NAMES = {
             body: JSON.stringify(contact),
         })
             .then(response => response.json())
-            .then(data => this.setState({success: true}))
+            .then(response => this.setState({success: true, data: response}))
             .catch((error) => this.setState({errorMessage: error.message}));
        };
 
@@ -88,11 +93,32 @@ const CLASS_NAMES = {
          this.setState({showAddContactModal: false})
      }
 
+     deleteContact = (id) => {
+         console.log("IDIDIDID", id)
+        const myHeaders = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        });
+         const url = `https://contacts-api-demo.herokuapp.com/contacts/`;
+         fetch(url + id,{
+             method: 'DELETE',
+             headers: myHeaders
+         })
+             .then(response => this.setState({success: response.status === 200 ? true : false}))
+             .catch((error) => console.log("ERROR MESSAGE", error));
+     };
+
+     onShowDeleteContactModal = (id) => {
+         this.setState({showDeleteContactModal: true, clickedId: id})
+     }
+
+     onHideDeleteContactModal = () => {
+         this.setState({showDeleteContactModal: false})
+     }
+
 
   render() {
-    const {isLoaded, contactList, error, showAddContactModal, success} = this.state;
-    console.log("CONTACT list", contactList)
-    console.log("DATATATTATA", this.state)
+    const {isLoaded, contactList, error, showAddContactModal, success, showDeleteContactModal, clickedId} = this.state;
     return (
         <div className={CLASS_NAMES.CONTACT_CONTAINER}>
             <div className={CLASS_NAMES.CONTACT_HEADER}>
@@ -118,6 +144,23 @@ const CLASS_NAMES = {
                                     <img src={emailIcon} width="30" height="20"/>
                                     {contact.emailAddress}
                                 </div>
+                                <img src={trashIcon} 
+                                     width="30" 
+                                     height="20" 
+                                     className={CLASS_NAMES.DELETE_ICON} 
+                                     variant="danger" 
+                                     onClick={() => this.onShowDeleteContactModal(contact.id)}/>
+                                     {clickedId === contact.id ?
+                                        <DeleteContactModal onShow={showDeleteContactModal} 
+                                                            onHide={this.onHideDeleteContactModal}
+                                                            onDeleteContact={this.deleteContact}
+                                                            id={contact.id}
+                                                            success={success}
+
+                                        />
+                                        : null 
+                                     }
+
                             </ListGroup.Item>
                         })}
                     </ListGroup> :
