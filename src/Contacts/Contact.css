@@ -72,6 +72,13 @@ img {
     cursor: pointer;
 }
 
+.edit-icon {
+    position: absolute;
+    bottom: 47%;
+    right: 7%;
+    cursor: pointer;
+}
+
 
 .modal-footer {
     justify-content: center !important;
