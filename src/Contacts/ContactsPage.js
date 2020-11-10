@@ -14,8 +14,7 @@ import EditContactModal from './EditContactModal';
 
 
 
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmdlbGFAZXhhbXBsZS5jb20iLCJyb2xlcyI6W10sImlhdCI6MTYwMzk4MzI2OSwiZXhwIjoxNjAzOTg2ODY5fQ.DkeiP6NzxpWjXJLKXkQpqvhlitlhPf2tz8xdFtYYPnk';
-
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmdlbGFAZXhhbXBsZS5jb20iLCJyb2xlcyI6W10sImlhdCI6MTYwNTAzODgzMSwiZXhwIjoxNjA1MDQyNDMxfQ.9QFZChfH45LYPKNnzmopvm964XP4wlMJN6-O2n_wYZM'
 const CLASS_NAMES = {
      CONTACT_CONTAINER: 'contact-container',
      CONTACT_HEADER: 'contact-header',
@@ -229,8 +228,8 @@ const CLASS_NAMES = {
                              saveContact={this.saveContact} 
                              success={success}
             />
-
         </div>
+
       );
     };
 

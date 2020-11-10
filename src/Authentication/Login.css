@@ -1,0 +1,30 @@
+.login-container {
+    width: 30%;
+    height: 80vh;
+    margin: auto;
+    border: 1px solid #9E9E9E;
+    margin-top: 20px;
+    background-color: #7695b4;
+}
+
+
+.email-pass-label {
+    display: block;
+}
+
+.login-title {
+    font-size: 80px;
+    color: rgb(238, 234, 234)
+}
+
+.input-style {
+    width: 65%;
+    height: 40px;
+}
+
+.login-btn {
+    background-color: #0b3250;
+    width: 65%;
+    height: 60px;
+    border: none;
+}
