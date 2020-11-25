@@ -102,6 +102,7 @@ export class LoginPage extends React.Component {
                 <input
                         name="password"
                         value={password}
+                        type="password"
                         onChange={this.handleChange}
                         className={CLASS_NAMES.INPUT_STYLE}
                 />

@@ -10,6 +10,13 @@
 
 .email-pass-label {
     display: block;
+    margin: auto;
+    width: 65%;
+    text-align: left;
+    font-size: 18px;
+    color: #ffff;
+    margin-top: 5%;
+    margin-bottom: 1%;
 }
 
 .login-title {
@@ -27,4 +34,6 @@
     width: 65%;
     height: 60px;
     border: none;
+    margin-top: 8%;
+    font-size: 20px;
 }

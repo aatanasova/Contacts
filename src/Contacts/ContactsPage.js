@@ -13,8 +13,6 @@ import DeleteContactModal from './DeleteContactModal';
 import EditContactModal from './EditContactModal';
 
 
-
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmdlbGFAZXhhbXBsZS5jb20iLCJyb2xlcyI6W10sImlhdCI6MTYwNTAzODgzMSwiZXhwIjoxNjA1MDQyNDMxfQ.9QFZChfH45LYPKNnzmopvm964XP4wlMJN6-O2n_wYZM'
 const CLASS_NAMES = {
      CONTACT_CONTAINER: 'contact-container',
      CONTACT_HEADER: 'contact-header',
@@ -44,6 +42,11 @@ const CLASS_NAMES = {
         }
      }
 
+    getToken() {
+        // Retrieves the user token from localStorage
+        return localStorage.getItem('id_token')
+    }
+
      componentDidMount() {
         this.fetchAllContacts();
      };
@@ -57,6 +60,7 @@ const CLASS_NAMES = {
 
 
      fetchAllContacts = () => {
+        const token =  this.getToken();
         const myHeaders = new Headers({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -73,6 +77,7 @@ const CLASS_NAMES = {
 
      saveContact = (contact) => {
         const url = `https://contacts-api-demo.herokuapp.com/contacts/`;
+        const token =  this.getToken();
         fetch(url, {
             method: 'post', // or 'PUT'
             mode: 'cors',
@@ -96,6 +101,7 @@ const CLASS_NAMES = {
      }
 
      deleteContact = (id) => {
+        const token =  this.getToken();
         const myHeaders = new Headers({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -118,6 +124,7 @@ const CLASS_NAMES = {
      }
 
      editContact = (id, contact) => {
+        const token =  this.getToken();
         const url = `https://contacts-api-demo.herokuapp.com/contacts/`;
         fetch(url + id, {
             method: 'put', // or 'PUT'
